@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Usuario\\Documents\\Evalaución MDP\\AppConsola\\AppConsola.csproj": {}
+    "C:\\Users\\Usuario\\Documents\\Evalaución MDP\\App-De-Links\\AppConsola.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Usuario\\Documents\\Evalaución MDP\\AppConsola\\AppConsola.csproj": {
+    "C:\\Users\\Usuario\\Documents\\Evalaución MDP\\App-De-Links\\AppConsola.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Usuario\\Documents\\Evalaución MDP\\AppConsola\\AppConsola.csproj",
+        "projectUniqueName": "C:\\Users\\Usuario\\Documents\\Evalaución MDP\\App-De-Links\\AppConsola.csproj",
         "projectName": "AppConsola",
-        "projectPath": "C:\\Users\\Usuario\\Documents\\Evalaución MDP\\AppConsola\\AppConsola.csproj",
+        "projectPath": "C:\\Users\\Usuario\\Documents\\Evalaución MDP\\App-De-Links\\AppConsola.csproj",
         "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Usuario\\Documents\\Evalaución MDP\\AppConsola\\obj\\",
+        "outputPath": "C:\\Users\\Usuario\\Documents\\Evalaución MDP\\App-De-Links\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

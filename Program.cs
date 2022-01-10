@@ -123,7 +123,7 @@ namespace ConsoleApplication2
            string logeo = "";
            while( logeo == "")
            {
-            Console.WriteLine("Cúal es tu usuario:");
+            System.Diagnostics.Debug.WriteLine("Cúal es tu usuario:");
             usuario = Console.ReadLine();
             Console.WriteLine("Cúal es tu contraseña:");
             contraseña = Console.ReadLine();
