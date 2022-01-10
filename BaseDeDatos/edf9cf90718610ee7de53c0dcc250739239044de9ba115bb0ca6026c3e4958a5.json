@@ -28,16 +28,75 @@
     ]
   },
   {
-    "UniqueId": "528e53b5-c324-4165-9db9-2cde600f8e1b",
-    "Title": "",
-    "URL": "https://youtube.com",
-    "rfc": "2022-01-10T12:35:53.9304908-05:00",
+    "UniqueId": "75e4b02c-4c54-4821-b687-6fbfdfafbf86",
+    "Title": "Facebook",
+    "URL": "facebool",
+    "rfc": "2022-01-10T15:11:59.2015226-05:00",
     "Etiquetas": [
       {
         "NombEtiqueta": "empresa"
       },
       {
-        "NombEtiqueta": " estudio"
+        "NombEtiqueta": "entrenimiento"
+      }
+    ]
+  },
+  {
+    "UniqueId": "9e6538b3-c7ab-451b-9831-1b3501dd10ec",
+    "Title": "LinkedIN",
+    "URL": "https://www.linkedin.com",
+    "rfc": "2022-01-10T16:42:48.0682753-05:00",
+    "Etiquetas": [
+      {
+        "NombEtiqueta": "empresa"
+      },
+      {
+        "NombEtiqueta": "trabajo"
+      }
+    ]
+  },
+  {
+    "UniqueId": "39feeb56-49f8-441f-8d2b-a429b3f92093",
+    "Title": "GitHub: Where the world builds software · GitHub",
+    "URL": "https://github.com",
+    "rfc": "2022-01-10T17:01:59.2210382-05:00",
+    "Etiquetas": [
+      {
+        "NombEtiqueta": "empresa"
+      },
+      {
+        "NombEtiqueta": "trabajo"
+      }
+    ]
+  },
+  {
+    "UniqueId": "e281621e-edea-4a5f-a684-d2082e7a06af",
+    "Title": "Inicio - MDP",
+    "URL": "https://www.mdp.com.pe",
+    "rfc": "2022-01-10T17:06:42.7605051-05:00",
+    "Etiquetas": [
+      {
+        "NombEtiqueta": "empresa"
+      },
+      {
+        "NombEtiqueta": "programacion"
+      },
+      {
+        "NombEtiqueta": "software"
+      }
+    ]
+  },
+  {
+    "UniqueId": "5b3da965-21fe-4c47-9748-4dfe4398a743",
+    "Title": "YouTube",
+    "URL": "https://www.youtube.com",
+    "rfc": "2022-01-10T17:10:15.2097229-05:00",
+    "Etiquetas": [
+      {
+        "NombEtiqueta": "empresa"
+      },
+      {
+        "NombEtiqueta": "videos"
       }
     ]
   }

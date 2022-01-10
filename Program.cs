@@ -4,7 +4,8 @@ using System.Security.Cryptography;
 using System.Text;
 using ConsoleApplication2.Models;
 using Newtonsoft.Json;
-using System.Web;
+using System.Globalization;
+using System.Threading.Tasks;
 
 
 namespace ConsoleApplication2
@@ -21,17 +22,12 @@ namespace ConsoleApplication2
             {
                 string hash = GetHash(sha256Hash, source);
 
-                Console.WriteLine($"The SHA256 hash of {source} is: {hash}.");
-
-                Console.WriteLine("Verifying the hash...");
-
                 if (VerifyHash(sha256Hash, source, hash))
                 {
-                    Console.WriteLine("The hashes are the same.");
                 }
                 else
                 {
-                    Console.WriteLine("The hashes are not same.");
+                    Console.WriteLine("Error con el Hash.");
                 }
 
                 return hash;
@@ -100,7 +96,6 @@ namespace ConsoleApplication2
             List<user> users = new List<user>();
             var Lectura = GetLinksJson(Directory.GetCurrentDirectory()+ @"\Usuarios\users.Json");
             users = DeserializeLogeo(Lectura);
-            Console.WriteLine("bucle logeo");
             foreach(user user in users)
             {
                 if(user.Usuario == usuario & Hash(llave) == user.contraseña)
@@ -109,41 +104,16 @@ namespace ConsoleApplication2
                 }
                 break;
             };
-            Console.WriteLine("Termino");
 
             return dirección;
         }
 
         
 
-        // public static class Javascript
-        // {
-        //     static string scriptTag = "<script type=\"\" language=\"\">{0}</script>";
-        //     public static void ConsoleLog(string message)
-        //     {       
-        //         string function = "console.log('{0}');";
-        //         string log = string.Format(GenerateCodeFromFunction(function), message);
-        //         HttpContext.Current.Response.Write(log);
-        //     }
-
-        //     public static void Alert(string message)
-        //     {
-        //         string function = "alert('{0}');";
-        //         string log = string.Format(GenerateCodeFromFunction(function), message);
-        //         HttpContext.Current.Response.Write(log);
-        //     }
-
-        //     static string GenerateCodeFromFunction(string function)
-        //     {
-        //         return string.Format(scriptTag, function);
-        //     }
-        // }
-
        [STAThread]
-       static void Main(string[] args)
+       static async Task Main(string[] args)
        {
            string CarpetaBasedeDatos = "";
-           Console.WriteLine(Directory.Exists(CarpetaBasedeDatos));
            while(!Directory.Exists(CarpetaBasedeDatos)){
                 Console.WriteLine("Cúal es el directorio de Base de Datos:");
                 CarpetaBasedeDatos = Console.ReadLine();
@@ -157,12 +127,9 @@ namespace ConsoleApplication2
             usuario = Console.ReadLine();
             Console.WriteLine("Cúal es tu contraseña:");
             contraseña = Console.ReadLine();
-            Console.WriteLine("inicio logeo");
             logeo = Logeo(usuario, contraseña);
-            Console.WriteLine(logeo);
-
+            Console.Clear();
            };
-           Console.WriteLine("termino bucle logeo");
 
 
         //    List<user> users = new List<user>();
@@ -191,8 +158,8 @@ namespace ConsoleApplication2
 
         //    }
            string target = CarpetaBasedeDatos+ @"\"+ logeo + ".json";
-           Console.WriteLine(File.Exists(target));
            bool flg_nuevo = false;
+           int paginado = 1;
 
            do{
                string cadena;
@@ -213,6 +180,25 @@ namespace ConsoleApplication2
                     Console.ForegroundColor = ConsoleColor.White;
                     continue;
                 }
+                if(cadena.Substring(0,9) == "-per-page")
+                {
+                    try
+                    {
+                        paginado = Int32.Parse(cadena.Substring(9,cadena.Length - 9));
+                        Console.WriteLine(paginado);
+                        if(paginado<1)
+                        {
+                            Console.WriteLine("El paginado debe ser mayor a 1");
+                            paginado = 1;
+                        }
+                        continue;
+                    }
+                    catch (FormatException)
+                    {
+                        Console.WriteLine("Error de Formato");
+                    }
+                    
+                }
                 if(cadena.Substring(0,8) != "mdplinks"){
                     Console.ForegroundColor = ConsoleColor.DarkRed;
                     Console.WriteLine("Ingrese bien el comando");
@@ -223,8 +209,6 @@ namespace ConsoleApplication2
                 List<Link> Links = new List<Link>();
                 List<Etiqueta> etiquetas = new List<Etiqueta>();
 
-                Console.WriteLine("File.Exists(target");
-                Console.WriteLine(File.Exists(target));
                 if(!File.Exists(target)){
                     flg_nuevo = true;
 
@@ -252,10 +236,18 @@ namespace ConsoleApplication2
                     string s4 = "--tags";
                     int index2 = s3.IndexOf(s4);
                         if (index2 >= 0){
-                            tags = cadena.Substring(index2 + 7, cadena.Length - index2 - 7);
-                            cadena = cadena.Substring(0,index2-1);
+                            if(cadena == "mdplinks --tags"  || cadena == "mdplinks --tags ")
+                            {
+                                tags = "Alltags";
+                            }
+                            else{
+                                tags = cadena.Substring(index2 + 7, cadena.Length - index2 - 7);
+                                tags = tags.ToLower();
+                                cadena = cadena.Substring(0,index2-1);
+                            }
+                            
                         }
-                    if(cadena.Length > 10)
+                    if(cadena.Length > 10 & tags != "Alltags")
                     {
                         string s1 = cadena;
                         url = cadena.Substring(10, cadena.Length - 11);
@@ -271,21 +263,18 @@ namespace ConsoleApplication2
                 int flgURL = 0;
 
                 if(url.Length >= 1){
-                    Console.WriteLine(flg_nuevo);
                     if(!flg_nuevo)
                     {
                         //Verificamos URL
-                        Console.WriteLine("Verificamos url");
                         foreach(Link link in Links)
                         {
-                            Console.WriteLine(url+link.URL);
                             if(url == link.URL)
                             {
                                 flgURL = 1;
                                 if(title.Length > 1)
                                 {
                                     Links[contador].Title = title;
-                                    Console.WriteLine("Agregamos titulo");
+                                    //Console.WriteLine("Agregamos titulo");
                                 }
                                 if(tags.Length > 1)
                                 {
@@ -297,7 +286,7 @@ namespace ConsoleApplication2
                                         {
                                             if(j.NombEtiqueta == i)
                                             {
-                                                Console.WriteLine(j.NombEtiqueta + i);
+                                                //Console.WriteLine(j.NombEtiqueta + i);
                                                 flg_tags = false;
                                             }
                                         }
@@ -307,7 +296,6 @@ namespace ConsoleApplication2
                                         }
                                         
                                     }
-                                    Console.WriteLine("Agregamos etiqueta");
                                 }
                             }
                             contador = contador+1;
@@ -315,22 +303,44 @@ namespace ConsoleApplication2
                     }
                         if(flgURL == 0)
                         {
-                            if(tags.Length < 1){
+                            if(tags.Length < 1 & url.Length > 1){
                                 Console.ForegroundColor = ConsoleColor.DarkRed;
                                 Console.WriteLine("Ingrese mínimo una etiqueta");
                                 Console.ForegroundColor = ConsoleColor.White;
                                 continue;
                             }
+                                //Consulta GET
+                                if(title == "")
+                                    {
+                                        HttpClient client = new HttpClient();
+                                        var httpResponse  =  await client.GetAsync(url);
+                                        if(httpResponse.IsSuccessStatusCode)
+                                        {
+                                            var content = await httpResponse.Content.ReadAsStringAsync();
+                                            int indexTitle = content.IndexOf("<title>");
+                                            int indexTitleFin = content.IndexOf("</title>");
+                                                if (indexTitle >= 0){
+                                                    title = content.Substring(indexTitle+7,indexTitleFin-indexTitle-7);
+                                                }
+                                                else
+                                                {
+                                                    int indexH1 = content.IndexOf("<h1>");
+                                                    int indexH1Fin = content.IndexOf("</h1>");
+                                                        if (indexH1 >= 0){
+                                                            title = content.Substring(indexH1+4,indexH1Fin-indexH1-4);
+                                                        }
+                                                }
+                                        }
+                                        
+                                    };
                                 //Agregamos un nuevo Link
-                                Console.WriteLine("Agregamos etiqueta nueva");
-
                                 foreach(var l in tagslist)
                                 {
                                     etiquetas.Add(new Etiqueta() {NombEtiqueta=l});
                                 }
                                 
                                 Links.Add(new Link() {
-                                    UniqueId = Guid.NewGuid ().ToString (), 
+                                    UniqueId = Guid.NewGuid ().ToString (),
                                     Title = title,
                                     URL = url,
                                     rfc = DateTime.Now,
@@ -340,15 +350,11 @@ namespace ConsoleApplication2
 
                         flg_nuevo = false;
 
-                    
-                    
-                    Console.WriteLine("Guardamos los datos");
                     string LinksJson = JsonConvert.SerializeObject(Links.ToArray(), Formatting.Indented);
                     string _path =  CarpetaBasedeDatos+ @"\"+ logeo + ".json";
                     System.IO.File.WriteAllText(_path, LinksJson);
 
                     var CurrentDirectory = Directory.GetCurrentDirectory();
-                    Console.WriteLine(CurrentDirectory);
 
 
                 }else{
@@ -357,15 +363,13 @@ namespace ConsoleApplication2
                     {
                         string flg_etiqueta = "No";
                         string acum = "";
-                        int paginado = 1;
                         int contPaginado = 0;
-                        
-
+                        Console.Clear();
                         foreach(Link link in Links)
                         {
                             foreach(Etiqueta etiqueta in link.Etiquetas)
                             {
-                                if(etiqueta.NombEtiqueta == tags)
+                                if(etiqueta.NombEtiqueta == tags || tags == "Alltags")
                                 {
                                     flg_etiqueta = "yes";
                                     contPaginado = contPaginado + 1;
@@ -373,7 +377,9 @@ namespace ConsoleApplication2
                             }
                             if(flg_etiqueta == "yes") 
                             {
+                                Console.ForegroundColor = ConsoleColor.Green;
                                 Console.WriteLine(string.Format("{0}",link.Title));
+                                Console.ForegroundColor = ConsoleColor.White;
                                 Console.WriteLine(string.Format("URL: {0}",link.URL));
                                 acum = "";
                                 foreach(Etiqueta etiqueta in link.Etiquetas)
@@ -383,10 +389,18 @@ namespace ConsoleApplication2
                                 }
                                 acum = acum.Remove(acum.Length - 2);
                                 Console.WriteLine("Etiquetas: {0}",acum);
-                                Console.WriteLine(string.Format("Fecha y Hora de Creación: {0}",link.rfc));
+                                string diasemana, numdia, nommes, año, hora, min, seg;
+                                diasemana = link.rfc.ToString("dddd",new CultureInfo("es-ES"));
+                                numdia = link.rfc.ToString("dd",new CultureInfo("es-ES")); 
+                                nommes = link.rfc.ToString("MMMM",new CultureInfo("es-ES"));
+                                año = link.rfc.ToString("yyyy",new CultureInfo("es-ES"));
+                                hora = link.rfc.ToString("hh",new CultureInfo("es-ES"));
+                                min = link.rfc.ToString("mm",new CultureInfo("es-ES"));
+                                seg = link.rfc.ToString("ss",new CultureInfo("es-ES"));
+                                Console.WriteLine(string.Format("Fecha y Hora de Creación: {0} {1} de {2} de {3} {4}:{5}:{6} ",diasemana, numdia, nommes, año, hora, min, seg));
                             }
                             if(contPaginado == paginado){
-                                if(Console.ReadKey(true).Key != ConsoleKey.Escape)
+                                if(Console.ReadKey(true).Key != ConsoleKey.Q)
                                 {
                                     contPaginado = 0;
                                     Console.Clear();
