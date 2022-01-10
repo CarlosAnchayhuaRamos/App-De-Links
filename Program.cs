@@ -4,6 +4,7 @@ using System.Security.Cryptography;
 using System.Text;
 using ConsoleApplication2.Models;
 using Newtonsoft.Json;
+using System.Web;
 
 
 namespace ConsoleApplication2
@@ -115,15 +116,44 @@ namespace ConsoleApplication2
 
         
 
+        // public static class Javascript
+        // {
+        //     static string scriptTag = "<script type=\"\" language=\"\">{0}</script>";
+        //     public static void ConsoleLog(string message)
+        //     {       
+        //         string function = "console.log('{0}');";
+        //         string log = string.Format(GenerateCodeFromFunction(function), message);
+        //         HttpContext.Current.Response.Write(log);
+        //     }
+
+        //     public static void Alert(string message)
+        //     {
+        //         string function = "alert('{0}');";
+        //         string log = string.Format(GenerateCodeFromFunction(function), message);
+        //         HttpContext.Current.Response.Write(log);
+        //     }
+
+        //     static string GenerateCodeFromFunction(string function)
+        //     {
+        //         return string.Format(scriptTag, function);
+        //     }
+        // }
+
        [STAThread]
        static void Main(string[] args)
        {
+           string CarpetaBasedeDatos = "";
+           Console.WriteLine(Directory.Exists(CarpetaBasedeDatos));
+           while(!Directory.Exists(CarpetaBasedeDatos)){
+                Console.WriteLine("Cúal es el directorio de Base de Datos:");
+                CarpetaBasedeDatos = Console.ReadLine();
+           }
            string usuario = "";
            string contraseña = "";
            string logeo = "";
            while( logeo == "")
            {
-            System.Diagnostics.Debug.WriteLine("Cúal es tu usuario:");
+            Console.WriteLine("Cúal es tu usuario:");
             usuario = Console.ReadLine();
             Console.WriteLine("Cúal es tu contraseña:");
             contraseña = Console.ReadLine();
@@ -160,7 +190,7 @@ namespace ConsoleApplication2
         //        System.IO.File.WriteAllText(Directory.GetCurrentDirectory()+ @"\BaseDeDatos", contraseña);
 
         //    }
-           string target = Directory.GetCurrentDirectory()+ @"\BaseDeDatos\"+ logeo + ".json";
+           string target = CarpetaBasedeDatos+ @"\"+ logeo + ".json";
            Console.WriteLine(File.Exists(target));
            bool flg_nuevo = false;
 
@@ -202,7 +232,7 @@ namespace ConsoleApplication2
                 else
                 {
                     flg_nuevo = false;
-                    string archivo = Directory.GetCurrentDirectory()+ @"\BaseDeDatos\"+logeo+".json";
+                    string archivo = CarpetaBasedeDatos+ @"\"+ logeo + ".json";
                     var Lectura = GetLinksJson(archivo);
                             Links = DeserializeFile(Lectura);
                     
@@ -285,6 +315,12 @@ namespace ConsoleApplication2
                     }
                         if(flgURL == 0)
                         {
+                            if(tags.Length < 1){
+                                Console.ForegroundColor = ConsoleColor.DarkRed;
+                                Console.WriteLine("Ingrese mínimo una etiqueta");
+                                Console.ForegroundColor = ConsoleColor.White;
+                                continue;
+                            }
                                 //Agregamos un nuevo Link
                                 Console.WriteLine("Agregamos etiqueta nueva");
 
@@ -308,7 +344,7 @@ namespace ConsoleApplication2
                     
                     Console.WriteLine("Guardamos los datos");
                     string LinksJson = JsonConvert.SerializeObject(Links.ToArray(), Formatting.Indented);
-                    string _path =  Directory.GetCurrentDirectory()+ @"\BaseDeDatos\"+ logeo + ".json";
+                    string _path =  CarpetaBasedeDatos+ @"\"+ logeo + ".json";
                     System.IO.File.WriteAllText(_path, LinksJson);
 
                     var CurrentDirectory = Directory.GetCurrentDirectory();
@@ -321,6 +357,9 @@ namespace ConsoleApplication2
                     {
                         string flg_etiqueta = "No";
                         string acum = "";
+                        int paginado = 1;
+                        int contPaginado = 0;
+                        
 
                         foreach(Link link in Links)
                         {
@@ -329,9 +368,10 @@ namespace ConsoleApplication2
                                 if(etiqueta.NombEtiqueta == tags)
                                 {
                                     flg_etiqueta = "yes";
+                                    contPaginado = contPaginado + 1;
                                 }
                             }
-                            if(flg_etiqueta == "yes")
+                            if(flg_etiqueta == "yes") 
                             {
                                 Console.WriteLine(string.Format("{0}",link.Title));
                                 Console.WriteLine(string.Format("URL: {0}",link.URL));
@@ -344,6 +384,18 @@ namespace ConsoleApplication2
                                 acum = acum.Remove(acum.Length - 2);
                                 Console.WriteLine("Etiquetas: {0}",acum);
                                 Console.WriteLine(string.Format("Fecha y Hora de Creación: {0}",link.rfc));
+                            }
+                            if(contPaginado == paginado){
+                                if(Console.ReadKey(true).Key != ConsoleKey.Escape)
+                                {
+                                    contPaginado = 0;
+                                    Console.Clear();
+                                    continue;
+                                }
+                                else
+                                {
+                                    break;
+                                };
                             }
                         }
                     }

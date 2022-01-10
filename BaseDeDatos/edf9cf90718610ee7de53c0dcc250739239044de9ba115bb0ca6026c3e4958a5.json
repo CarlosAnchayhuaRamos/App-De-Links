@@ -1,7 +1,7 @@
 [
   {
     "UniqueId": "e81c3fc3-910b-4402-9cd7-f56a36c8e118",
-    "Title": "",
+    "Title": "Mail Google",
     "URL": "https://mail.google.com",
     "rfc": "2022-01-09T22:49:11.496863-05:00",
     "Etiquetas": [
@@ -24,6 +24,20 @@
       },
       {
         "NombEtiqueta": "estudio"
+      }
+    ]
+  },
+  {
+    "UniqueId": "528e53b5-c324-4165-9db9-2cde600f8e1b",
+    "Title": "",
+    "URL": "https://youtube.com",
+    "rfc": "2022-01-10T12:35:53.9304908-05:00",
+    "Etiquetas": [
+      {
+        "NombEtiqueta": "empresa"
+      },
+      {
+        "NombEtiqueta": " estudio"
       }
     ]
   }

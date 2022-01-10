@@ -1,0 +1,6 @@
+C:\Users\Usuario\Documents\Evalaución MDP\App-De-Links\bin\Release\net6.0\publish\AppConsola.exe
+C:\Users\Usuario\Documents\Evalaución MDP\App-De-Links\bin\Release\net6.0\publish\AppConsola.dll
+C:\Users\Usuario\Documents\Evalaución MDP\App-De-Links\bin\Release\net6.0\publish\AppConsola.deps.json
+C:\Users\Usuario\Documents\Evalaución MDP\App-De-Links\bin\Release\net6.0\publish\AppConsola.runtimeconfig.json
+C:\Users\Usuario\Documents\Evalaución MDP\App-De-Links\bin\Release\net6.0\publish\AppConsola.pdb
+C:\Users\Usuario\Documents\Evalaución MDP\App-De-Links\bin\Release\net6.0\publish\Newtonsoft.Json.dll
