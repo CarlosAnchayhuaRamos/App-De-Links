@@ -1,0 +1,17 @@
+C:\Users\Usuario\Documents\Evalaución MDP\AppConsola\bin\Debug\net6.0\AppConsola.exe
+C:\Users\Usuario\Documents\Evalaución MDP\AppConsola\bin\Debug\net6.0\AppConsola.deps.json
+C:\Users\Usuario\Documents\Evalaución MDP\AppConsola\bin\Debug\net6.0\AppConsola.runtimeconfig.json
+C:\Users\Usuario\Documents\Evalaución MDP\AppConsola\bin\Debug\net6.0\AppConsola.dll
+C:\Users\Usuario\Documents\Evalaución MDP\AppConsola\bin\Debug\net6.0\ref\AppConsola.dll
+C:\Users\Usuario\Documents\Evalaución MDP\AppConsola\bin\Debug\net6.0\AppConsola.pdb
+C:\Users\Usuario\Documents\Evalaución MDP\AppConsola\obj\Debug\net6.0\AppConsola.csproj.AssemblyReference.cache
+C:\Users\Usuario\Documents\Evalaución MDP\AppConsola\obj\Debug\net6.0\AppConsola.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Usuario\Documents\Evalaución MDP\AppConsola\obj\Debug\net6.0\AppConsola.AssemblyInfoInputs.cache
+C:\Users\Usuario\Documents\Evalaución MDP\AppConsola\obj\Debug\net6.0\AppConsola.AssemblyInfo.cs
+C:\Users\Usuario\Documents\Evalaución MDP\AppConsola\obj\Debug\net6.0\AppConsola.csproj.CoreCompileInputs.cache
+C:\Users\Usuario\Documents\Evalaución MDP\AppConsola\obj\Debug\net6.0\AppConsola.dll
+C:\Users\Usuario\Documents\Evalaución MDP\AppConsola\obj\Debug\net6.0\ref\AppConsola.dll
+C:\Users\Usuario\Documents\Evalaución MDP\AppConsola\obj\Debug\net6.0\AppConsola.pdb
+C:\Users\Usuario\Documents\Evalaución MDP\AppConsola\obj\Debug\net6.0\AppConsola.genruntimeconfig.cache
+C:\Users\Usuario\Documents\Evalaución MDP\AppConsola\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\Users\Usuario\Documents\Evalaución MDP\AppConsola\obj\Debug\net6.0\AppConsola.csproj.CopyComplete

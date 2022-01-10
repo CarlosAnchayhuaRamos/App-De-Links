@@ -1,0 +1,30 @@
+[
+  {
+    "UniqueId": "e81c3fc3-910b-4402-9cd7-f56a36c8e118",
+    "Title": "",
+    "URL": "https://mail.google.com",
+    "rfc": "2022-01-09T22:49:11.496863-05:00",
+    "Etiquetas": [
+      {
+        "NombEtiqueta": "empresa"
+      },
+      {
+        "NombEtiqueta": "diversion"
+      }
+    ]
+  },
+  {
+    "UniqueId": "10a0e024-5364-4d64-b338-a9cba587e4e5",
+    "Title": "Google General",
+    "URL": "https://google.com",
+    "rfc": "2022-01-09T22:51:31.4201979-05:00",
+    "Etiquetas": [
+      {
+        "NombEtiqueta": "empresa"
+      },
+      {
+        "NombEtiqueta": "estudio"
+      }
+    ]
+  }
+]
