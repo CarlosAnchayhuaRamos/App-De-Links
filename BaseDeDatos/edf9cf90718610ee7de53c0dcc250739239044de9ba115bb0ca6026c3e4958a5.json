@@ -70,23 +70,6 @@
     ]
   },
   {
-    "UniqueId": "e281621e-edea-4a5f-a684-d2082e7a06af",
-    "Title": "Inicio - MDP",
-    "URL": "https://www.mdp.com.pe",
-    "rfc": "2022-01-10T17:06:42.7605051-05:00",
-    "Etiquetas": [
-      {
-        "NombEtiqueta": "empresa"
-      },
-      {
-        "NombEtiqueta": "programacion"
-      },
-      {
-        "NombEtiqueta": "software"
-      }
-    ]
-  },
-  {
     "UniqueId": "5b3da965-21fe-4c47-9748-4dfe4398a743",
     "Title": "YouTube",
     "URL": "https://www.youtube.com",
@@ -97,6 +80,45 @@
       },
       {
         "NombEtiqueta": "videos"
+      }
+    ]
+  },
+  {
+    "UniqueId": "1406eec1-1d10-4a3a-ac06-82ea60ba9dd4",
+    "Title": "",
+    "URL": "https://coinmarketcap.com",
+    "rfc": "2022-01-10T18:25:02.0724633-05:00",
+    "Etiquetas": [
+      {
+        "NombEtiqueta": "cripto"
+      }
+    ]
+  },
+  {
+    "UniqueId": "dbbfdbf3-94f6-42d6-91cc-64693b5ce8dd",
+    "Title": "Proyectos de Ley",
+    "URL": "https://wb2server.congreso.gob.pe/spley-portal/#/expediente/search",
+    "rfc": "2022-01-10T18:28:55.0180172-05:00",
+    "Etiquetas": [
+      {
+        "NombEtiqueta": "politica"
+      },
+      {
+        "NombEtiqueta": "congreso"
+      }
+    ]
+  },
+  {
+    "UniqueId": "59fa4c6b-ab1b-4429-bdbf-3fb7780f2584",
+    "Title": "Inicio - MDP",
+    "URL": "https://www.mdp.com.pe",
+    "rfc": "2022-01-14T19:27:24.9490641-05:00",
+    "Etiquetas": [
+      {
+        "NombEtiqueta": "empresa"
+      },
+      {
+        "NombEtiqueta": "programación"
       }
     ]
   }

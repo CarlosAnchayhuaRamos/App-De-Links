@@ -6,6 +6,7 @@ using ConsoleApplication2.Models;
 using Newtonsoft.Json;
 using System.Globalization;
 using System.Threading.Tasks;
+using StackExchange.Redis;
 
 
 namespace ConsoleApplication2
@@ -131,7 +132,7 @@ namespace ConsoleApplication2
             Console.Clear();
            };
 
-
+        #region InputData
         //    List<user> users = new List<user>();
 
         //    users.Add(new user() {
@@ -157,6 +158,8 @@ namespace ConsoleApplication2
         //        System.IO.File.WriteAllText(Directory.GetCurrentDirectory()+ @"\BaseDeDatos", contraseña);
 
         //    }
+        #endregion
+
            string target = CarpetaBasedeDatos+ @"\"+ logeo + ".json";
            bool flg_nuevo = false;
            int paginado = 1;
@@ -354,7 +357,22 @@ namespace ConsoleApplication2
                     string _path =  CarpetaBasedeDatos+ @"\"+ logeo + ".json";
                     System.IO.File.WriteAllText(_path, LinksJson);
 
-                    var CurrentDirectory = Directory.GetCurrentDirectory();
+                    //var CurrentDirectory = Directory.GetCurrentDirectory();
+                    
+                    Console.WriteLine("Ingreso datos redis");
+                    var redisDB = ConsoleApplication2.RedisDB.Connection.GetDatabase();
+                    redisDB.StringSet(logeo,LinksJson);
+
+                    Console.WriteLine("Salida datos redis");
+
+                    var valor  = redisDB.StringGet(logeo);
+                    Links = DeserializeFile(valor);
+                    foreach(Link link in Links)
+                    {
+                        Console.WriteLine(link.Title);
+                    }
+                    
+
 
 
                 }else{
@@ -422,4 +440,24 @@ namespace ConsoleApplication2
        
 
     }
+
+    public class RedisDB
+    {
+        private static Lazy<ConnectionMultiplexer> _LazyConnection;
+
+        public static ConnectionMultiplexer Connection
+        {
+            get
+            {
+                return _LazyConnection.Value;
+            }
+        }
+        static RedisDB()
+        {
+            _LazyConnection = new Lazy<ConnectionMultiplexer>(() => 
+                ConnectionMultiplexer.Connect("localhost")
+            );
+        }
+    }
+    
 }

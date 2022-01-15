@@ -9,3 +9,5 @@ admin
 Contraseña:
 contraseña
 
+
+dotnet add package StackExchange.Redis --version 2.2.88
